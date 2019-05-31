@@ -4,10 +4,17 @@ class BasicArray
 
     def reduce_sum(input_array)
       # Return the sum of all numbers in a given array.
+      input_array.reduce {|sum, enum| sum + enum }
     end
 
     def select_less_than_100(input_array)
       # Given an array of numbers, return a new array that contains all numbers from the original array that are less than 100.
+      input_array.select {|number| number < 100 }
+
+      #without select
+      # new_array = []
+      # input_array.each {|number| new_array << number if number < 100}
+      # new_array
     end
 
     def map_double(input_array)
@@ -34,12 +41,69 @@ class BasicArray
       # [2, 1, 3, 2, 5, 1, 2, 6, 2, 7, 1, 5, 6, 3, 2, 6, 2, 1, 2]
       # Output:
       # [2, 3, 1, 2, 2, 1, 5, 2, 2]
+      new_array = []
+      index = 0
+      while index < input_array.length
+        new_array << input_array[index]
+        index += input_array[index]
+      end
+      new_array
     end
 
-  end
-  
 end
 
+RSpec.describe BasicArray do
+  
+  let(:algorithm) { BasicArray.new }
+
+  describe '#reduce_sum' do
+    it 'should return 10 when given [1,2,3,4]' do
+      expect(algorithm.reduce_sum([1,2,3,4])).to eq(10)
+    end
+
+    it 'should return 20 when given [2, 4, 6, 8]' do
+      expect(algorithm.reduce_sum([2, 4, 6, 8])).to eq(20)
+    end
+
+    it 'should return 28 when given [4, 6, 8, 10]' do
+      expect(algorithm.reduce_sum([4, 6, 8, 10])).to eq(28)
+    end
+
+    it 'should return 12 when given [1, 1, 10]' do
+      expect(algorithm.reduce_sum([1, 1, 10])).to eq(12)
+    end
+  end
+
+  describe '#select_less_than_100' do 
+    it 'should return [88, 55, 33] when given [121, 88, 444, 55, 33]' do 
+      expect(algorithm.select_less_than_100([121, 88, 444, 55, 33])).to eq([88, 55, 33])
+    end
+
+    it 'should return [20,-100] when given [20,1000,-100]' do
+      expect(algorithm.select_less_than_100([20,1000,-100])).to eq([20, -100])
+    end
+
+    it 'should return [] when given [3000, 20000, 655]' do
+      expect(algorithm.select_less_than_100([3000, 20000, 655])).to eq([])
+    end
+  end
+
+  describe '#skip_it' do
+    it 'should return [1, 3, 2, 1] when given [1, 3, 2, 2, 2, 1, 1]' do 
+      expect(algorithm.skip_it([1, 3, 2, 2, 2, 1, 1])).to eq([1, 3, 2, 1])
+    end
+
+    it 'should return [3] when given [3]' do 
+      expect(algorithm.skip_it([3])).to eq([3])
+    end
+
+    it 'should return [1, 10] when given [1, 10, 2, 3, 4, 5, 6, 7, 8]' do 
+      expect(algorithm.skip_it([1, 10, 2, 3, 4, 5, 6, 7, 8])).to eq([1, 10])
+    end
+  end
+
+
+end
 
 
 
