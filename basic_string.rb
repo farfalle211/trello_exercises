@@ -38,13 +38,31 @@
 # Input: “abcdefghijklmnopqrstuvwxyz”
 # Output: false
 
-def false_or_true(string)
-  if string.include? "$"
-    return true
-  else
-    return false
-  end
+# def false_or_true(string)
+#   if string.include? "$"
+#     return true
+#   else
+#     return false
+#   end
+# end
+
+# def false_or_true(string)   #without include?
+#   character_array = string.split("")
+#   character_array.each {|character| return true if character == "$" }
+#   return false
+# end
+
+# def false_or_true(string) #using select
+#   character_array = string.split("")
+#   filtered_array = character_array.select {|number| true if number == "$"}
+#   return true if filtered_array.include? "$"
+#   false
+# end
+
+def false_or_true(string)   #using hashmap
+  
 end
 
 p false_or_true("i hate $ but i love money i know i know im crazy")
 p false_or_true("abcdefghijklmnopqrstuvwxyz")
+
