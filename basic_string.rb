@@ -1,68 +1,11 @@
-#input: ["h", "e", "l", "l", "o"]
-#output: ["o", "l", "l", "e", "h"]
-
-# def reverse_string(input_string)
-#   split_array = input_string.split("")
-#   index = 0
-#   reversed_array = []
-
-#   while index > -1 * input_string.length
-#     reversed_array << split_array[index - 1]
-#     index -= 1
-#   end
-#   reversed_array.join
-# end
+require 'rspec'
 
 
-# p reverse_string("hello")
-
-# def reverse(string)
-#   index = string.length - 1  
-#   result = ""
-
-#   while index >= 0
-#     result += string[index]
-#     index -= 1
-#   end
-
-#   return result
-# end
-
-# p reverse("hello")
-
-# Given a string, return true if the “$” character is contained within the string or false if it is not.
-
-# Input: “i hate $ but i love money i know i know im crazy”
-# Output: true
-
-# Input: “abcdefghijklmnopqrstuvwxyz”
-# Output: false
-
-# def false_or_true(string)
-#   if string.include? "$"
-#     return true
-#   else
-#     return false
-#   end
-# end
-
-# def false_or_true(string)   #without include?
-#   character_array = string.split("")
-#   character_array.each {|character| return true if character == "$" }
-#   return false
-# end
-
-# def false_or_true(string) #using select
-#   character_array = string.split("")
-#   filtered_array = character_array.select {|number| true if number == "$"}
-#   return true if filtered_array.include? "$"
-#   false
-# end
-
-def false_or_true(string)   #using hashmap
-  
+RSpec.describe String do
+  describe '#reverse_string' do
+    it 'should reverse the string' do
+      string = String.new
+      expect(string.reverse_string("hello")).to eq("elloh")
+    end
+  end
 end
-
-p false_or_true("i hate $ but i love money i know i know im crazy")
-p false_or_true("abcdefghijklmnopqrstuvwxyz")
-
